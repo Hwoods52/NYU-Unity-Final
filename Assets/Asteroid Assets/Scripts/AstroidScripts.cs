@@ -6,17 +6,17 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class AstroidScripts : MonoBehaviour
 {
-    public TextMeshProUGUI ScoreText;
     public float speed;
     private Rigidbody asteroidRb;
     public GameObject ship;
-    public int score;
+    public float asteroidHealth=4;
+    private ShieldManager shieldManager;
     // Start is called before the first frame update
     void Start()
     {
         asteroidRb = GetComponent<Rigidbody>();
         ship = GameObject.Find("Main Wing");
-
+        shieldManager = GameObject.Find("ShieldManager").GetComponent<ShieldManager>();
     }
 
     // Update is called once per frame
@@ -28,19 +28,22 @@ public class AstroidScripts : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider collider)
+    private void OnTriggerEnter(Collider col)
     {
-        if (collider.gameObject)
+        if (col.CompareTag("Laser"))
         {
-            Debug.Log("collision");
-            UpdateScore(2);
+            asteroidHealth -= 1;
+            Destroy(col.gameObject);
+            if(asteroidHealth == 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+        if (col.CompareTag("Ship"))
+        {
+            shieldManager.ShieldHit();
             Destroy(gameObject);
         }
+    }
 
-    }
-    public void UpdateScore(int scoreToAdd)
-    {
-        score += scoreToAdd;
-        ScoreText.text = "amogus:" + score;
-    }
 }

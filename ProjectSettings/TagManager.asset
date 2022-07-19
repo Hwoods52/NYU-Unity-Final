@@ -12,6 +12,8 @@ TagManager:
   - Car Entry Trigger
   - Enemy
   - Dog
+  - Laser
+  - Ship
   layers:
   - Default
   - TransparentFX
@@ -21,8 +23,8 @@ TagManager:
   - UI
   - whatIsGround
   - Interactable
-  - 
-  - 
+  - Asteroid
+  - Laser
   - 
   - 
   - 
