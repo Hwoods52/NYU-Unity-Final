@@ -4,31 +4,22 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - Obstacle
-  - Money
-  - Bomb
-  - Background
-  - Car Entry Trigger
-  - Enemy
-  - Dog
-<<<<<<< Updated upstream
-  - Laser
   - Ship
-=======
-  - bDet
->>>>>>> Stashed changes
+  - Enemy
+  - Laser
+  - PickUp
+  - TankStation
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - whatIsGround
   - Interactable
-  - Asteroid
-  - Laser
+  - 
+  - 
+  - 
   - 
   - 
   - 

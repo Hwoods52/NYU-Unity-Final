@@ -9,13 +9,10 @@ public class PlayerInteract : MonoBehaviour
     private float distance = 3f;
     [SerializeField]
     private LayerMask mask;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool isHoldingTank = false;
+    public GameObject heldObject;
+    
 
-    // Update is called once per frame
     void Update()
     {
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
@@ -23,10 +20,17 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(ray, out hitInfo, distance, mask))
         {
-            if(hitInfo.collider.GetComponent<Interactable>() != null && Input.GetKeyDown(KeyCode.E))
+            if (hitInfo.collider != null && Input.GetKeyDown(KeyCode.E) && !isHoldingTank)
             {
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
             }
+            else if (isHoldingTank && hitInfo.collider.CompareTag("TankStation") && Input.GetKeyDown(KeyCode.E) && heldObject.GetComponent<Grabable>().hasBeenUsed == false && hitInfo.collider.gameObject.GetComponent<TankStation>().shieldsEmpty == true)
+            {
+                hitInfo.collider.GetComponent<Interactable>().BaseInteract();
+            }
+        }else if (isHoldingTank && Input.GetKeyDown(KeyCode.E))
+        {
+            heldObject.GetComponent<Grabable>().Drop();
         }
 
     }
