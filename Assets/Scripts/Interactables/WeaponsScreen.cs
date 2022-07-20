@@ -18,10 +18,16 @@ public class WeaponsScreen : Interactable
     public Transform defaultCameraPosition;
     public Transform defaultOrientation;
 
+    public Camera mainCamera;
+    public Camera gunCamera;
+    public Camera fakeGunCamera;
+    public Transform mainCameraPosition;
+
     protected override void Interact()
     {
         if (isBeingUsed == true)
         {
+
             isBeingUsed = false;
             player.GetComponent<PlayerMovementTutorial>().enabled = true;
             player.GetComponentInChildren<MeshRenderer>().enabled = true;
@@ -33,6 +39,8 @@ public class WeaponsScreen : Interactable
             moveCamera.xMax = 90;
             moveCamera.yMin = -360;
             moveCamera.yMax = 360;
+            
+            
         }
          else if (isBeingUsed == false)
         {
@@ -48,6 +56,12 @@ public class WeaponsScreen : Interactable
             moveCamera.xMax = xMax;
             moveCamera.yMin = yMin;
             moveCamera.yMax = yMax;
+            mainCamera.depth = -1;
+            mainCamera.gameObject.GetComponent<MoveCamera>().enabled = false;
+            gunCamera.gameObject.GetComponent<MoveCamera>().enabled = true;
+            mainCamera.transform.position = mainCameraPosition.position;
+            mainCamera.transform.rotation = mainCameraPosition.rotation;
+            gunCamera.transform.rotation = fakeGunCamera.transform.rotation;
         }
         
         

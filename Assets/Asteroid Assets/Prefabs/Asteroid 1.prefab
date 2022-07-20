@@ -299,9 +299,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad81f7edc09fbd49b3113d8b88cc483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 500
   ship: {fileID: 0}
-  asteroidHealth: 1
+  asteroidHealth: 2
 --- !u!64 &3464628443301415704
 MeshCollider:
   m_ObjectHideFlags: 0

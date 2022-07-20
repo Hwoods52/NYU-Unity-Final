@@ -7,6 +7,13 @@ public class Grabable : Interactable
     public GameObject playerHoldPosition;
     public PlayerInteract playerInteract;
     public bool hasBeenUsed = false;
+
+    private void Awake()
+    {
+        playerHoldPosition = GameObject.Find("PlayerHoldPosition");
+        playerInteract = GameObject.Find("Player").GetComponent<PlayerInteract>();
+}
+
     protected override void Interact()
     {
         transform.position = playerHoldPosition.transform.position;

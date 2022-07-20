@@ -8,8 +8,8 @@ public class LaserScript : MonoBehaviour
     public WeaponRay weaponRay;
     private void Awake()
     {
-        weaponRay = GameObject.Find("Right Weapon Shoot").GetComponent<WeaponRay>();
-        transform.LookAt(weaponRay.ray1.GetPoint(100));
+        //weaponRay = GameObject.Find("Right Weapon Shoot").GetComponent<WeaponRay>();
+        //transform.LookAt(weaponRay.ray1.GetPoint(100));
     }
     void Update()
     {
