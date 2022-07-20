@@ -26,7 +26,7 @@ public class WaterSpawn : MonoBehaviour
 
     public void spawner()
     {
-        while(ballin < 20)
+        while(ballin < 1)
         {
             Debug.Log("ballin");
             Instantiate(waterSphere, bucket.transform.position + offset, waterSphere.transform.rotation);
