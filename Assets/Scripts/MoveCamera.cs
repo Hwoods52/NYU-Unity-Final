@@ -36,7 +36,7 @@ public class MoveCamera : MonoBehaviour
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, xMin, xMax);
-        yRotation = Mathf.Clamp(yRotation, yMin, yMax);
+       // yRotation = Mathf.Clamp(yRotation, yMin, yMax);
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }

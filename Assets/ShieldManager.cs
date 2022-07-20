@@ -10,7 +10,7 @@ public class ShieldManager : MonoBehaviour
     public TankStation tankStation;
     [SerializeField]
     private TextMeshProUGUI shieldText;
-
+    public HealthManager healthManager;
     void Start()
     {
         shieldText.text = "Shield Health = " + shieldHealth;
@@ -24,6 +24,7 @@ public class ShieldManager : MonoBehaviour
             shieldsOn = false;
             shieldText.text = "Shields Down";
             tankStation.shieldsEmpty = true;
+            healthManager.shipHealth -= 1;
         }
     }
     public void TankUsed()
