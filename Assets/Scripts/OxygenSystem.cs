@@ -7,6 +7,7 @@ public class OxygenSystem : Interactable
     public Slider slider;
     public HealthManager healthManager;
     public HealPodTrigger healPodTrigger;
+    public bool isSafe = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,13 +17,16 @@ public class OxygenSystem : Interactable
     // Update is called once per frame
     void Update()
     {
-        if (slider.value > 0)
+        if (!isSafe)
         {
-            slider.value -= Time.deltaTime * .07f;
-        }
-        if(slider.value == 0 && healPodTrigger.isHealing== false)
-        {
-            healthManager.playerHealth -= Time.deltaTime * 3;
+            if (slider.value > 0)
+            {
+                slider.value -= Time.deltaTime * .07f;
+            }
+            if (slider.value == 0 && healPodTrigger.isHealing == false)
+            {
+                healthManager.playerHealth -= Time.deltaTime * 3;
+            }
         }
     }
 

@@ -1,18 +1,73 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class HyperdriveManager : MonoBehaviour
+using UnityEngine.UI;
+public class HyperdriveManager : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    public Slider slider;
+    public float speed;
+    public bool isInteracting = false;
+    public GameObject player;
+    public GameObject cam;
+    public Transform cameraPosition;
+    public AsteroidSpawnManager asteroidSpawnManager;
+    public OxygenSystem oxygenSystem;
+    public ParticleSystem hyperdriveParticles;
+    public Material normal;
+    public Material hyperdrive;
+
+    protected override void Interact()
     {
+        if (isInteracting)
+        {
+            isInteracting = false;
+            slider.value = 0;
+            player.GetComponent<PlayerMovementTutorial>().enabled = true;
+            player.GetComponentInChildren<MeshRenderer>().enabled = true;
+            cam.GetComponent<MoveCamera>().enabled = true;
+            cam.GetComponent<Camera>().fieldOfView = 90;
+        }
+        else
+        {
+            isInteracting = true;
+            player.GetComponent<PlayerMovementTutorial>().enabled = false;
+            player.GetComponentInChildren<MeshRenderer>().enabled = false;
+            cam.GetComponent<MoveCamera>().enabled = false;
+            cam.transform.rotation = cameraPosition.rotation;
+            cam.transform.position = cameraPosition.position;
+            cam.GetComponent<Camera>().fieldOfView = 60;
+        }
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        hyperdriveParticles.Stop();
+        RenderSettings.skybox = normal;
+    }
+    public void Update()
+    {
+        if(slider.value == 1)
+        {
+            StartCoroutine(Hyperdrive());
+            slider.value = 0;
+
+        }
+        if (isInteracting)
+        {
+            slider.value += Time.deltaTime * speed;
+        }
+    }
+    IEnumerator Hyperdrive()
+    {
+        RenderSettings.skybox = hyperdrive;
+        hyperdriveParticles.Play();
+        asteroidSpawnManager.StopAllCoroutines();
+        oxygenSystem.isSafe = true;
+        yield return new WaitForSeconds(15);
+        RenderSettings.skybox = normal;
+        StartCoroutine(asteroidSpawnManager.SpawnAsteroid());
+        hyperdriveParticles.Stop();
+        asteroidSpawnManager.enabled = true;
+        oxygenSystem.isSafe = false;
     }
 }

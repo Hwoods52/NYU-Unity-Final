@@ -25,7 +25,7 @@ public class AsteroidSpawnManager : MonoBehaviour
         
     }
 
-    IEnumerator SpawnAsteroid()
+    public IEnumerator SpawnAsteroid()
     {
         int animalIndex = Random.Range(0, asteroidPrefabs.Length);
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
