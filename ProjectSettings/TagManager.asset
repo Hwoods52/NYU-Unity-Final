@@ -9,6 +9,8 @@ TagManager:
   - Laser
   - PickUp
   - TankStation
+  - bDet
+  - ballDes
   layers:
   - Default
   - TransparentFX

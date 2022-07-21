@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class HyperdriveManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Start is called before the first frame updatess
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("hoi");
+        if (other.gameObject.CompareTag("ballDes"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
