@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad81f7edc09fbd49b3113d8b88cc483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 1000
   ship: {fileID: 0}
   asteroidHealth: 1
 --- !u!64 &4943582490909180007

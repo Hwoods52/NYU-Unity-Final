@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4878305627343485748}
   - component: {fileID: 4878305627343485749}
   - component: {fileID: 4878305627343485754}
-  - component: {fileID: 4878305627343485755}
+  - component: {fileID: 3520194356850476067}
   m_Layer: 6
   m_Name: Shield Tank
   m_TagString: Untagged
@@ -147,7 +147,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4878305627343485755
+--- !u!114 &3520194356850476067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4878305627343485752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dfc7337f0ed64bf4b2250fc39fc94b4, type: 3}
+  m_Script: {fileID: 11500000, guid: d5f7d185bcc2149c9bd7bd8396d1551d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: 

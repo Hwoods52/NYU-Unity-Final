@@ -10,10 +10,12 @@ public class AsteroidSpawnManager : MonoBehaviour
     private float spawnPosZ = 50;
     private float startDelay = 2f;
     private float spawnInterval = 1.5f;
+    private float rapidNumber = 0;
+    public GameObject asteroidFieldText;
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("SpawnRandomAsteroid", startDelay, spawnInterval);
+        StartCoroutine(SpawnAsteroid());
 
     }
 
@@ -23,10 +25,28 @@ public class AsteroidSpawnManager : MonoBehaviour
         
     }
 
-    void SpawnRandomAsteroid()
+    IEnumerator SpawnAsteroid()
     {
         int animalIndex = Random.Range(0, asteroidPrefabs.Length);
         Vector3 spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
-        Instantiate(asteroidPrefabs[animalIndex], spawnPos, asteroidPrefabs[animalIndex].transform.rotation);
+        GameObject asteroid = Instantiate(asteroidPrefabs[animalIndex], spawnPos, asteroidPrefabs[animalIndex].transform.rotation);
+        asteroid.GetComponent<AstroidScripts>().speed = 5000;
+        if (rapidNumber == 0)
+        {
+            yield return new WaitForSeconds(Random.Range(1.5f, 3f));
+            asteroidFieldText.SetActive(false);
+        }
+        if(rapidNumber != 0)
+        {
+            yield return new WaitForSeconds(Random.Range(.2f, .5f));
+            rapidNumber -= 1;
+            asteroidFieldText.SetActive(true);
+        }
+        float chance = Random.Range(1, 20);
+        if(Random.Range(1,20) == chance)
+        {
+            rapidNumber = Random.Range(15, 25);
+        }
+        StartCoroutine(SpawnAsteroid());
     }
 }

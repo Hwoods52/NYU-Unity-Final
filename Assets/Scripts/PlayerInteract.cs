@@ -20,15 +20,15 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(ray, out hitInfo, distance, mask))
         {
-            if (hitInfo.collider != null && Input.GetKeyDown(KeyCode.E) && !isHoldingTank)
+            if (hitInfo.collider != null && Input.GetKeyDown(KeyCode.Mouse0) && !isHoldingTank)
             {
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
             }
-            else if (isHoldingTank && hitInfo.collider.CompareTag("TankStation") && Input.GetKeyDown(KeyCode.E) && heldObject.GetComponent<Grabable>().hasBeenUsed == false && hitInfo.collider.gameObject.GetComponent<TankStation>().shieldsEmpty == true)
+            else if (isHoldingTank && hitInfo.collider.CompareTag("TankStation") && Input.GetKeyDown(KeyCode.Mouse0) && heldObject.GetComponent<Grabable>().hasBeenUsed == false && hitInfo.collider.gameObject.GetComponent<TankStation>().shieldsEmpty == true)
             {
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
             }
-        }else if (isHoldingTank && Input.GetKeyDown(KeyCode.E))
+        }else if (isHoldingTank && Input.GetKeyDown(KeyCode.Mouse0))
         {
             heldObject.GetComponent<Grabable>().Drop();
         }
