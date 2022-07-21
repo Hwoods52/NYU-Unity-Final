@@ -5,9 +5,13 @@ using UnityEngine;
 public class WaterSpawn : MonoBehaviour
 {
     public GameObject bucket;
+    public GameObject ParticleSystem;
     public int ballin;
     public GameObject waterSphere;
     public Vector3 offset = new Vector3(0, 1, 0);
+    public GameObject child;
+    public Transform parent;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,22 +20,25 @@ public class WaterSpawn : MonoBehaviour
         ballin = 0;
         spawner();
     }
-    
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void spawner()
     {
-        while(ballin < 1)
+        while (ballin < 1)
         {
             Debug.Log("ballin");
             Instantiate(waterSphere, bucket.transform.position + offset, waterSphere.transform.rotation);
             ballin++;
+            Instantiate(ParticleSystem, bucket.transform.position + offset, waterSphere.transform.rotation);
+            child.transform.SetParent(parent);
+
         }
-        
+
     }
-}
+} 
