@@ -11,12 +11,9 @@ public class ShieldManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI shieldText;
     public HealthManager healthManager;
-    public AudioClip downSound;
-    private AudioSource ShieldAudio;
     void Start()
     {
         shieldText.text = "Shield Health = " + shieldHealth;
-        ShieldAudio = GetComponent<AudioSource>();
     }
     public void ShieldHit()
     {
@@ -27,7 +24,6 @@ public class ShieldManager : MonoBehaviour
             shieldsOn = false;
             shieldText.text = "Shields Down";
             tankStation.shieldsEmpty = true;
-            ShieldAudio.PlayOneShot(downSound, 1.0f);
             healthManager.shipHealth -= 1;
         }
     }
