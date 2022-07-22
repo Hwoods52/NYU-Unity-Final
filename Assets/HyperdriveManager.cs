@@ -15,6 +15,7 @@ public class HyperdriveManager : Interactable
     public ParticleSystem hyperdriveParticles;
     public Material normal;
     public Material hyperdrive;
+    public GameManager gameManager;
 
     protected override void Interact()
     {
@@ -23,7 +24,7 @@ public class HyperdriveManager : Interactable
             isInteracting = false;
             slider.value = 0;
             player.GetComponent<PlayerMovementTutorial>().enabled = true;
-            player.GetComponentInChildren<MeshRenderer>().enabled = true;
+          // player.GetComponentInChildren<MeshRenderer>().enabled = true;
             cam.GetComponent<MoveCamera>().enabled = true;
             cam.GetComponent<Camera>().fieldOfView = 90;
         }
@@ -31,7 +32,7 @@ public class HyperdriveManager : Interactable
         {
             isInteracting = true;
             player.GetComponent<PlayerMovementTutorial>().enabled = false;
-            player.GetComponentInChildren<MeshRenderer>().enabled = false;
+//            player.GetComponentInChildren<MeshRenderer>().enabled = false;
             cam.GetComponent<MoveCamera>().enabled = false;
             cam.transform.rotation = cameraPosition.rotation;
             cam.transform.position = cameraPosition.position;
@@ -50,6 +51,8 @@ public class HyperdriveManager : Interactable
         {
             StartCoroutine(Hyperdrive());
             slider.value = 0;
+            slider.gameObject.SetActive(false);
+            Interact();
 
         }
         if (isInteracting)
@@ -63,11 +66,14 @@ public class HyperdriveManager : Interactable
         hyperdriveParticles.Play();
         asteroidSpawnManager.StopAllCoroutines();
         oxygenSystem.isSafe = true;
+        gameManager.speed = 30;
         yield return new WaitForSeconds(15);
         RenderSettings.skybox = normal;
+        gameManager.speed = 10;
         StartCoroutine(asteroidSpawnManager.SpawnAsteroid());
         hyperdriveParticles.Stop();
         asteroidSpawnManager.enabled = true;
         oxygenSystem.isSafe = false;
+        slider.gameObject.SetActive(true);
     }
 }

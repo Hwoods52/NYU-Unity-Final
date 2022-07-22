@@ -20,6 +20,15 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI shipDistanceScreen;
     public TextMeshProUGUI deathScreenDistance;
 
+    private void Start()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "TitleScreen")
+        {
+            GameObject.Find("HighScoreText").GetComponent<TextMeshProUGUI>().text = "High Score: " + PlayerPrefs.GetFloat("HighScore");
+        }
+    }
 
     private void Update()
     {
@@ -40,6 +49,10 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void QuitToTitle()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
     public void ResetGame()
     {
         SceneManager.LoadScene("SampleScene 1");
@@ -50,7 +63,7 @@ public class GameManager : MonoBehaviour
         //deathScreen.SetActive(true);
         moveCamera.enabled = false;
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
+        Cursor.visible = true;
         playerMovement.enabled = false;
         spawnManager.enabled = false;
         mapScreen.enabled = false;
@@ -58,6 +71,9 @@ public class GameManager : MonoBehaviour
         mainCanvas.SetActive(false);
         deathScreenDistance.text = "Distance: " + distance;
         deathCanvas.SetActive(true);
-
+        if (distance >= PlayerPrefs.GetFloat("HighScore"))
+        {
+            PlayerPrefs.SetFloat("HighScore", distance);
+        }
     }
 }

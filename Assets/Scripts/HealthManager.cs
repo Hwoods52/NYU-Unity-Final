@@ -26,7 +26,7 @@ public class HealthManager : MonoBehaviour
         playerHealthText.text = "Oxygen Level: " + playerHealth;
 
 
-        if (playerHealth == 0)
+        if (playerHealth <= 0)
         {
             Debug.Log("You Died");
             gameManager.PlayerDeath();

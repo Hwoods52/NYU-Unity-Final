@@ -15,7 +15,7 @@ public class WeaponTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.parent.name == "Player")
+        if (other.name == "Player")
         {
             activated = true;
             reticle.SetActive(false);
@@ -23,7 +23,7 @@ public class WeaponTrigger : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if(other.transform.parent.name == "Player")
+        if(other.name == "Player")
         {
             activated = false;
             reticle.SetActive(true);

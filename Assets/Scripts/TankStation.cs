@@ -23,6 +23,7 @@ public class TankStation : Interactable
             playerInteract.heldObject = null;
             hasTank = true;
             usedTank.GetComponent<Grabable>().hasBeenUsed = true;
+            //usedTank.transform.GetChild(0).GetComponent<Shader>().
             shieldManager.TankUsed();
 
         } else if (playerInteract.heldObject == null && hasTank == true)
